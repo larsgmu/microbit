@@ -38,14 +38,15 @@ int main(){
 		 * turn off LED matrix if it is. */
 		 if(!(GPIO->IN & (1 << 17))){
 			 GPIO->OUTCLR = (1<<13) | (1<<14) | (1<<15);
-			 iprintf("Norway has %d counties.\n\r", 18);
+			// iprintf("Norway has %d counties.\n\r", 18);
+			uart_send('A');
 		 }
 		 /*if((GPIO->IN &(1<<13))){
 			 GPIO->OUTCLR = (1<<13) | (1<<14) | (1<<15);
 		 }else if(UART->RXDRDY || !(GPIO->IN &(1<<13))){
 			 GPIO->OUTSET = (1<<13) | (1<<14) | (1<<15);
 		 }*/
-		 uart_read();
+		 uart_send(uart_read());
 
 		sleep = 10000;
 		while(--sleep);
