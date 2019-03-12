@@ -60,6 +60,16 @@ void twi_init(){
 
     /* 3) Use normal I2C speed, i.e. 100 kHz operation. */
 
+	GPIO->PIN_CNF[30] = (0<<0) | (6<<8)| (3<<2); //SDA
+	GPIO->PIN_CNF[0] = (0<<0) | (6<<8)| (3<<2); //SCL
+    TWI0->PSELSCL = 0;
+    TWI0->PSELSDA = 30;
+    TWI0->FREQUENCY = 0x01980000;
+    TWI0->ENABLE = 5;
+    TWI0->RXDREADY = 0;
+    TWI0->ERROR = 0;
+    TWI0->TXDSENT = 0;
+
 }
 
 void twi_multi_read(
@@ -74,6 +84,13 @@ void twi_multi_read(
     /* 1) Write the register address you want to the slave */
     /*    device. Busy-wait until the register address has */
     /*    been sent by the TWI peripheral. */
+
+	TWI0->ADDRESS = slave_address;
+	TWI0->STARTTX = 1;
+	TWI0->TXDSENT = 0;
+	TWI0->TXD = start_register;
+	while(!TWI0->TXDSENT);
+
 
 
 
@@ -92,6 +109,20 @@ void twi_multi_read(
     /*    supply. This amounts to generating a repeated start */
     /*    condition, and reading the amount of registers you */
     /*    want. */
+	//Starter leseoperasjon [...]
+	TWI0->RXDREADY = 0;
+	TWI0->STARTRX = 1;
+
+	for(int i=0; i<registers_to_read-1; i++){
+		while(!TWI0->RXDREADY);
+		TWI0->RXDREADY = 0;
+		data_buffer[i] = TWI0->RXD;
+
+	}
+	TWI0->STOP = 1;
+	while(!TWI0->RXDREADY);
+	TWI0->RXDREADY = 0;
+	data_buffer[registers_to_read-1] = TWI0->RXD;
 
     /* 2) Remember that you need to generate a NACK at */
     /*    the of the sequence, read the TWI section to figure */

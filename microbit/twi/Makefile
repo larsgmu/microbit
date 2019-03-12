@@ -19,7 +19,7 @@ CFLAGS += -mcpu=cortex-m0 -mthumb -mabi=aapcs -mfloat-abi=soft
 CFLAGS += -ffunction-sections -fdata-sections --short-enums
 CFLAGS += -fno-strict-aliasing -fno-builtin
 # Good pracice
-# CFLAGS += -Wall -Werror -std=gnu99 -g3
+CFLAGS += -Wall -Werror -std=gnu99 -g3
 # CFLAGS += -ggdb -Og / -O0 / -O3 etc
 
 ## Linker flags
