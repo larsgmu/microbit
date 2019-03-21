@@ -1,3 +1,3 @@
 # MICRO:Bit LAB
 
-## Her skal alt lagres...
+Git Repo for Micro:Bit lab i faget TTK4235 Tilpassede Datasystemer.
