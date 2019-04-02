@@ -1,0 +1,15 @@
+if (getFloor != -1){
+        shouldIStop();
+    }
+
+    int shouldIStop(fsm_vars_t elevator){
+            for (int i = 0; i < N_FLOORS; i++){
+                for (int j = 0; j < N_BUTTONS; j++){
+                    if (elevator.queSys[i][1]){
+
+
+                        //stop og oppdater fsm_vars_t
+                    }
+                }
+            }
+        }

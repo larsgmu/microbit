@@ -28,7 +28,7 @@ int main() {
         }
     }
 
-    fsmRunMainLoop();
+    //fsmRunMainLoop();
 
     return 0;
 }
