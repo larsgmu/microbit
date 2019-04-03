@@ -29,7 +29,7 @@ int main() {
 
         //printf("STATE: %d\n", (int)e.state);
 
-
+        e.state = MOVING;
       //  buttonCheck(e);
         //updateLights(e);
 
