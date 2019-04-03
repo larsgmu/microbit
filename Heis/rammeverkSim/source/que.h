@@ -7,11 +7,11 @@
 
 //PUBLIC
 int getNextDir();
-bool shouldStop(int floor);
+int shouldStop(int floor);
 
 
 //PRIVATE
-bool hasOrdersAbove(bool** que);
+int hasOrdersAbove(int** que);
 
 
 #endif

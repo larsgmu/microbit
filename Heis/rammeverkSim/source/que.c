@@ -1,11 +1,8 @@
 #include "que.h"
 
-int getNextDir()
-
-
-}
-bool shouldStop(int floor);
+int getNextDir();
+int shouldStop(int floor);
 
 
 //PRIVATE
-bool hasOrdersAbove(int** que)
+int hasOrdersAbove(int** que);

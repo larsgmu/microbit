@@ -1,28 +1,14 @@
 #include "fsm.h"
 
 
-typedef enum {
-    IDLE, MOVING, ARRIVED, STOPPED
 
-
-} fsm_state_t;
-
-//Type for en heis
-typedef struct elev{
-fsm_state_t state;
-//int LastFloor;
-int targetFloor;
-int currentFloor;
-elev_motor_direction_t dir;
-int queSys[N_FLOORS][N_BUTTONS];
-}fsm_vars_t;
 
 
 
 //Sjekker om det er bestillinger over gjeldende etasje, retunerer bool(som er int i C)
 int hasOrdersAbove(fsm_vars_t elevator){
     for (int i = (elevator.currentFloor+1); i<N_FLOORS; i++){
-        for (int p = 0; p < N_BUTTONS; P++) {
+        for (int p = 0; p < N_BUTTONS; p++){
             if (elevator.queSys[i][p])
                 return 1;
         }
@@ -31,8 +17,8 @@ int hasOrdersAbove(fsm_vars_t elevator){
 }
 
 int hasOrdersBelow(fsm_vars_t elevator){
-    for (int i = 0; i<elevator.currentFloor; i++){
-        for (int p = 0; p < N_BUTTONS; P++) {
+    for(int i = 0; i<elevator.currentFloor; i++){
+        for (int p = 0; p < N_BUTTONS; p++){
             if (elevator.queSys[i][p])
                 return 1;
         }
@@ -51,18 +37,44 @@ if (getFloor != -1){
 */
 
 
+void elev_start(fsm_vars_t elevator){
+  elevator.state = MOVING;
+  elevator.dir = DIRN_DOWN;
+  elevator.targetFloor = 0;
+  elevator.currentFloor = -1;
+  elev_set_motor_direction(DIRN_DOWN);
+
+  for (int i = 0; i < N_FLOORS; i++){
+    for (int j = 0; j< N_BUTTONS; j++){
+      elevator.queSys[i][j] = 0;
+    }
+  }
+
+  while(elevator.currentFloor != elevator.targetFloor){
+    if(elev_get_floor_sensor_signal()!=-1){
+      elevator.currentFloor = elev_get_floor_sensor_signal();
+    }
+  }
+
+  elevator.state=IDLE;
+  elevator.dir =  DIRN_STOP;
+  elev_set_motor_direction(DIRN_STOP);
+
+
+}
+
 int shouldIStop(fsm_vars_t elevator){
 
     switch (elevator.dir) {
         case DIRN_UP:
             return
-                elevator.queSys[currentFloor][1] ||
-                elevator.queSys[currentFloor][2] ||
+                elevator.queSys[elevator.currentFloor][1] ||
+                elevator.queSys[elevator.currentFloor][2] ||
                 !hasOrdersAbove(elevator);
         case DIRN_DOWN:
             return
-                elevator.queSys[currentFloor][0] ||
-                elevator.queSys[currentFloor][2] ||
+                elevator.queSys[elevator.currentFloor][0] ||
+                elevator.queSys[elevator.currentFloor][2] ||
                 !hasOrdersBelow(elevator);
         case DIRN_STOP:
         default:
@@ -72,18 +84,18 @@ int shouldIStop(fsm_vars_t elevator){
 }
 
 //Oppdatterer lysene for knappene
-void updateLights(fsm_vars_t elevator) {
-    for (int i = 0; i<N_FLOORS; i++){
-        for (int p = 0; p < N_BUTTONS; P++) {
-             elev_set_button_lamp(elevator.queSys[i][p], i, elevator.queSys[i][p]);
+void updateLights(fsm_vars_t elevator){
+    for (int floor = 0; floor<N_FLOORS; floor++){
+        for (int button = 0; button < N_BUTTONS; button++){
+             elev_set_button_lamp(button, floor, elevator.queSys[floor][button]);
         }
     }
 }
 
 void buttonCheck(fsm_vars_t elevator){
 
-    for(int i in N_FLOORS){
-        for(int j in N_BUTTONS){
+    for(int i=0; i< N_FLOORS; i++){
+        for(int j=0; j < N_BUTTONS; j++){
             if(elev_get_button_signal(j,i)){
                 elevator.queSys[i][j] = 1;
             }
@@ -92,17 +104,21 @@ void buttonCheck(fsm_vars_t elevator){
 }
 
 void clearFloor(fsm_vars_t elevator){
-    elevator.queSys[currentFloor][0],elevator.queSys[currentFloor][1],elevator.queSys[currentFloor][2] = 0;
+    elevator.queSys[elevator.currentFloor][0]=0;
+    elevator.queSys[elevator.currentFloor][1]=0;
+    elevator.queSys[elevator.currentFloor][2]=0;
     updateLights(elevator);
 }
 
-void fsmRunMainLoop{
+void fsmRunMainLoop(fsm_vars_t elevator){
 
-while(1) {
+  while(1) {
 
 
 
-    if (arrivedAtFloor()) {
+/*
+
+    if (arrivedAtFloor()){
         swich(elev.state){
             case IDLE:
 
@@ -116,12 +132,13 @@ while(1) {
         }
     }
 
-    if (doorTimerEnded())
+    //if (doorTimerEnded())
 
 
-
+*/
+  }
 }
-}
+
 
 
 //SPØRSMÅL
