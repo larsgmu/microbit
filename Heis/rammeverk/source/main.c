@@ -15,7 +15,7 @@ int main() {
     fsm_vars_t e = {
       MOVING
     };
-    //elev_start(e);
+    elev_start(e);
 
 
 
@@ -30,20 +30,17 @@ int main() {
         //printf("STATE: %d\n", (int)e.state);
 
         e.state = MOVING;
-      //  buttonCheck(e);
-
-      
-        updateLights(e);
+        buttonCheck(e);
 
 
-        // Stop elevator and exit program if the stop button is pressed
-        if (elev_get_stop_signal()) {
-            elev_set_motor_direction(DIRN_STOP);
-            break;
-        }
+    // Stop elevator and exit program if the stop button is pressed
+    if (elev_get_stop_signal()) {
+        elev_set_motor_direction(DIRN_STOP);
+        break;
+
     }
 
     //fsmRunMainLoop();
-
+}
     return 0;
 }
