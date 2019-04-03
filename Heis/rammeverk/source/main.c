@@ -31,7 +31,7 @@ int main() {
 
         e.state = MOVING;
       //  buttonCheck(e);
-        //updateLights(e);
+        updateLights(e);
 
 
         // Stop elevator and exit program if the stop button is pressed
