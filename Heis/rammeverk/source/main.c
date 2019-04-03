@@ -31,6 +31,8 @@ int main() {
 
         e.state = MOVING;
       //  buttonCheck(e);
+
+      
         updateLights(e);
 
 
