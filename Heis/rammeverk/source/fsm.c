@@ -85,11 +85,13 @@ int shouldIStop(fsm_vars_t elevator){
 
 //Oppdatterer lysene for knappene
 void updateLights(fsm_vars_t elevator){
-    for (int floor = 0; floor<N_FLOORS; floor++){
+    elev_set_button_lamp(1, 0, elevator.queSys[floor][button]);
+    for (int floor = 1; floor<N_FLOORS-1; floor++){
         for (int button = 0; button < N_BUTTONS; button++){
              elev_set_button_lamp(button, floor, elevator.queSys[floor][button]);
         }
     }
+    elev_set_button_lamp(0, N_FLOORS-1, elevator.queSys[floor][button]);
 }
 
 void buttonCheck(fsm_vars_t elevator){
