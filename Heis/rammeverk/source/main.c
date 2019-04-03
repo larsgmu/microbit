@@ -15,7 +15,7 @@ int main() {
     fsm_vars_t e = {
       MOVING
     };
-    elev_start(e);
+    //elev_start(e);
 
 
 
