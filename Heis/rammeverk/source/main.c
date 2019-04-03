@@ -30,8 +30,8 @@ int main() {
         //printf("STATE: %d\n", (int)e.state);
 
 
-        buttonCheck(e);
-        updateLights(e);
+      //  buttonCheck(e);
+        //updateLights(e);
 
 
         // Stop elevator and exit program if the stop button is pressed
