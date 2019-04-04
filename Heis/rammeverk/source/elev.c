@@ -103,8 +103,10 @@ int elev_get_floor_sensor_signal(void) {
         return -1;
 }
 
-void elev_set_floor_indicator(int floor) {
-    assert(floor >= 0);
+int elev_set_floor_indicator(int floor) {
+    if(!(floor >= 0)){
+      return 0;
+    }
     assert(floor < N_FLOORS);
 
     // Binary encoding. One light must always be on.
@@ -117,13 +119,20 @@ void elev_set_floor_indicator(int floor) {
         io_set_bit(LIGHT_FLOOR_IND2);
     else
         io_clear_bit(LIGHT_FLOOR_IND2);
+
+
+    return 0;
 }
 
 int elev_get_button_signal(elev_button_type_t button, int floor) {
     assert(floor >= 0);
     assert(floor < N_FLOORS);
-    assert(!(button == BUTTON_CALL_UP && floor == N_FLOORS - 1));
-    assert(!(button == BUTTON_CALL_DOWN && floor == 0));
+    if((button == BUTTON_CALL_UP && floor == N_FLOORS - 1)){
+      return 0;
+    }
+    if((button == BUTTON_CALL_DOWN && floor == 0)){
+      return 0;
+    }
     assert(button == BUTTON_CALL_UP || button == BUTTON_CALL_DOWN || button == BUTTON_COMMAND);
 
     if (io_read_bit(button_channel_matrix[floor][button]))
@@ -132,15 +141,21 @@ int elev_get_button_signal(elev_button_type_t button, int floor) {
         return 0;
 }
 
-void elev_set_button_lamp(elev_button_type_t button, int floor, int value) {
+int elev_set_button_lamp(elev_button_type_t button, int floor, int value) {
     assert(floor >= 0);
     assert(floor < N_FLOORS);
-    assert(!(button == BUTTON_CALL_UP && floor == N_FLOORS - 1));
-    assert(!(button == BUTTON_CALL_DOWN && floor == 0));
+    if((button == BUTTON_CALL_UP && floor == N_FLOORS - 1)){
+      return 0;
+    }
+    if((button == BUTTON_CALL_DOWN && floor == 0)){
+      return 0;
+    }
     assert(button == BUTTON_CALL_UP || button == BUTTON_CALL_DOWN || button == BUTTON_COMMAND);
 
     if (value)
         io_set_bit(lamp_channel_matrix[floor][button]);
     else
         io_clear_bit(lamp_channel_matrix[floor][button]);
+
+    return 1;
 }

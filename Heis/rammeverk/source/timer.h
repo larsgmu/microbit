@@ -1,12 +1,7 @@
-#ifndef TIMER_H
-#define TIMER_H
+#include <time.h>
+#include <stdio.h>
 #include "elev.h"
+#include "fsm.h"
 
-
-//VARS
-bool door;
-
-//PUBLIC
-int openDoor();
-
-#endif
+void start_timer();
+int hodor();

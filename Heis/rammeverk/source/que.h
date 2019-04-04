@@ -4,14 +4,9 @@
 #include "fsm.h"
 #include "elev.h"
 
-
 //PUBLIC
-int getNextDir();
-bool shouldStop(int floor);
-
-
+//void printQue(fsm_vars_t elevator);
 //PRIVATE
-bool hasOrdersAbove(bool** que);
 
 
 #endif

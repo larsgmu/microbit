@@ -83,7 +83,7 @@ int elev_get_floor_sensor_signal(void);
   Set floor indicator lamp for a given floor.
   @param floor Which floor lamp to turn on. Other floor lamps are turned off.
 */
-void elev_set_floor_indicator(int floor);
+int elev_set_floor_indicator(int floor);
 
 
 
@@ -116,7 +116,7 @@ int elev_get_button_signal(elev_button_type_t button, int floor);
   @param floor Floor of lamp to set. Must be 0-3
   @param value Non-zero value turns lamp on, 0 turns lamp off.
 */
-void elev_set_button_lamp(elev_button_type_t button, int floor, int value);
+int elev_set_button_lamp(elev_button_type_t button, int floor, int value);
 
 
 
