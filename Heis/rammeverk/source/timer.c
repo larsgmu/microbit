@@ -5,13 +5,13 @@ static time_t start_time;
 
 static int timer_is_active = 0;
 
-void start_timer() {
+void timer_startTimer() {
 
   start_time = time(NULL);
   timer_is_active = 1;
 }
 
-int hodor() {
+int timer_hodor() {
 
   time_t current_time = time(NULL);
 

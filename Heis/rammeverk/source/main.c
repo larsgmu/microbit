@@ -1,8 +1,4 @@
-#include "elev.h"
 #include "fsm.h"
-#include <stdio.h>
-
-
 
 int main() {
     // Initialize hardware
@@ -11,9 +7,9 @@ int main() {
         return 1;
     }
 
-    fsm_vars_t e = {INIT};
-    elev_start(&e);
-    fsmRunMainLoop(&e);
+    fsm_vars_t heiSveis = {INIT};
+    fsm_startElev(&heiSveis);
+    fsm_mainLoop(&heiSveis);
 
     return 0;
 }

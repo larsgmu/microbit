@@ -1,7 +1,10 @@
-#include <time.h>
-#include <stdio.h>
-#include "elev.h"
-#include "fsm.h"
+#ifndef TIMER_H
+#define TIMER_H
 
-void start_timer();
-int hodor();
+#include <time.h>
+
+void timer_startTimer();
+int timer_hodor();
+
+
+#endif
