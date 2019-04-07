@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief A simple library for time functions
+ * @brief A simple library for time functions.
  */
 
 #ifndef TIMER_H

@@ -1,7 +1,7 @@
 /**
  * @file
- * @brief A simple library for doing operations on memory
- * buffers consisting of integers
+ * @brief Module containing enum for the different states
+ * and the struct with the variables used by the state machine
  */
 
 #ifndef STATE_H
@@ -20,8 +20,8 @@ typedef enum tag_fsm_state {
 } fsm_state_t;
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief Struct containing @c state @c currentFloor @c lastDir
+ * and @queSys which is used for storing the variables during runtime.
  */
 typedef struct tag_fsm_vars_t{
 fsm_state_t state;
