@@ -13,41 +13,32 @@
 #include "info.h"
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief Basic initialization, sends the elevator
+ * to the nearest floor, and updates its variables.
  *
- * @param[in]  p_from Source buffer.
- * @param[out] p_to   Destination buffer.
- * @param[in]  size Number of integers in the buffer.
+ * @param[out] elevator Elevator @c struct.
  *
- * @return 0 on success, 1 if either @p p_from or @p p_to
- * is a @c NULL pointer.
  */
 void fsm_startElev(fsm_vars_t* elevator);
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief A simple trigger function checking if the elevator,
+ * is currently between two floors.
  *
- * @param[in]  p_from Source buffer.
- * @param[out] p_to   Destination buffer.
- * @param[in]  size Number of integers in the buffer.
+ * @return 1 if @p elevator is between two floors, 0 if not.
  *
- * @return 0 on success, 1 if either @p p_from or @p p_to
- * is a @c NULL pointer.
  */
 int fsm_betweenFloors();
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief A trigger function checking if the
+ * elevator is currently at a floor.
  *
- * @param[in]  p_from Source buffer.
- * @param[out] p_to   Destination buffer.
- * @param[in]  size Number of integers in the buffer.
+ * @param[in,out] elevator Elevator @c struct.
  *
- * @return 0 on success, 1 if either @p p_from or @p p_to
- * is a @c NULL pointer.
+ * @return 1 if the elevator is at a floor and set
+ * the floor indicator light. 0 if not at a floor.
+ *
  */
 int fsm_atFloor(fsm_vars_t* elevator);
 
