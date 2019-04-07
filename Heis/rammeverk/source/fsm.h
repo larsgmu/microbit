@@ -52,28 +52,18 @@ int fsm_betweenFloors();
 int fsm_atFloor(fsm_vars_t* elevator);
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief Runs the elevator system and handling based on
+ * the elevator
  *
- * @param[in]  p_from Source buffer.
- * @param[out] p_to   Destination buffer.
- * @param[in]  size Number of integers in the buffer.
- *
- * @return 0 on success, 1 if either @p p_from or @p p_to
- * is a @c NULL pointer.
+ * @param[in,out] elevator Elevator @c struct
  */
 void fsm_mainLoop(fsm_vars_t* elevator);
 
 /**
- * @brief Copy a list of integers from one buffer to another,
- * reversing the order of the output in the process.
+ * @brief Restarting the system if @c currentFloor is
+ * between floors
  *
- * @param[in]  p_from Source buffer.
- * @param[out] p_to   Destination buffer.
- * @param[in]  size Number of integers in the buffer.
- *
- * @return 0 on success, 1 if either @p p_from or @p p_to
- * is a @c NULL pointer.
+ * @param[in] elevator Elevator @c struct
  */
 void fsm_stateError(fsm_vars_t* elevator);
 

@@ -9,7 +9,7 @@ int main() {
 
     fsm_vars_t heiSveis = {INIT};
     fsm_startElev(&heiSveis);
-    fsm_mainLoop(&heiSveis);
+    fsm_mainLoop(&heiSveis); //run main loop
 
     return 0;
 }

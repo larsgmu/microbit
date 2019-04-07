@@ -2,14 +2,17 @@
 
 
 void queue_clearFloor(fsm_vars_t* elevator){
+    // Zero floor button lamps on current floor
     elevator->queSys[elevator->currentFloor][0]=0;
     elevator->queSys[elevator->currentFloor][1]=0;
     elevator->queSys[elevator->currentFloor][2]=0;
+
     logic_updateLights(*elevator);
 }
 
 void queue_clearAll(fsm_vars_t* elevator){
 
+  // Zero all floor button lamps
   for(int floor = 0; floor < N_FLOORS; floor++){
     for(int button = 0; button < N_BUTTONS; button++){
       elevator->queSys[floor][button] = 0;
@@ -23,11 +26,13 @@ void queue_clearAll(fsm_vars_t* elevator){
 elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
   switch (elevator->lastDir) {
     case DIRN_DOWN:
+      //if it is orders below continue down
       if(logic_hasOrdersBelow(elevator)){
         return elevator->lastDir = DIRN_DOWN;
       }
 
     case DIRN_UP:
+      //if it is orders abow continue up
       if (logic_hasOrdersAbove(elevator)){
         return elevator->lastDir = DIRN_UP;
       }
@@ -36,6 +41,7 @@ elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
       if(elev_get_floor_sensor_signal()==-1){
         for(int floor = 0; floor < N_FLOORS; floor++){
           for(int button=0; button<N_BUTTONS; button++){
+
             if(elev_get_button_signal(button,floor) && elevator->currentFloor>floor){
               return DIRN_DOWN;
             }
