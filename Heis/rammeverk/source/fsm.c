@@ -18,12 +18,8 @@ void fsm_startElev(fsm_vars_t* elevator){
   elevator->lastDir =  DIRN_STOP;
   elev_set_motor_direction(DIRN_STOP);
   logic_updateLights(*elevator);
-
   printf("\nElevator initialized! \n");
-
-
   info_printStatus(*elevator);
-
 }
 
 
@@ -56,7 +52,6 @@ void fsm_mainLoop(fsm_vars_t* elevator){
   int timer_started = 0;
   while(1) {
     fsm_stateError(elevator);
-
     if (fsm_atFloor(elevator)){
 
         switch(elevator->state){

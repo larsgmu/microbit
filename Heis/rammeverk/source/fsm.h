@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief A simple library for doing operations on memory
+ * buffers consisting of integers
+ */
+
 #ifndef FSM_H
 #define FSM_H
 

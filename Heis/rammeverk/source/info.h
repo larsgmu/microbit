@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @brief A simple library for doing operations on memory
+ * buffers consisting of integers
+ */
+
 #ifndef INFO_H
 #define INFO_H
 
