@@ -1,0 +1,90 @@
+\hypertarget{info_8h}{}\section{source/info.h File Reference}
+\label{info_8h}\index{source/info.h@{source/info.h}}
+
+
+A simple library for printing to console.  
+
+
+{\ttfamily \#include \char`\"{}state.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{info_8h_a0cfef5a091252f865e4f70fe1ec28a04}{info\+\_\+print\+Status}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} elevator)
+\begin{DoxyCompactList}\small\item\em Prints info about the {\ttfamily elevator} to console,. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{info_8h_ac0446c88d37217ca7b9326cee3775042}{info\+\_\+state\+To\+Str}} (\mbox{\hyperlink{state_8h_a895a95c837e23afd3f65d85733fd09bc}{fsm\+\_\+state\+\_\+t}} state)
+\begin{DoxyCompactList}\small\item\em Turns a {\ttfamily state} into a string ({\ttfamily char} {\ttfamily $\ast$} in {\ttfamily C}) \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{info_8h_a487a02e808615acbf1d348ebbfe7535e}{info\+\_\+dir\+To\+Str}} (elev\+\_\+motor\+\_\+direction\+\_\+t dir)
+\begin{DoxyCompactList}\small\item\em Turns a {\ttfamily direction} into a string ({\ttfamily char} {\ttfamily $\ast$} in {\ttfamily C}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple library for printing to console. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{info_8h_a487a02e808615acbf1d348ebbfe7535e}\label{info_8h_a487a02e808615acbf1d348ebbfe7535e}} 
+\index{info.h@{info.h}!info\_dirToStr@{info\_dirToStr}}
+\index{info\_dirToStr@{info\_dirToStr}!info.h@{info.h}}
+\subsubsection{\texorpdfstring{info\_dirToStr()}{info\_dirToStr()}}
+{\footnotesize\ttfamily char$\ast$ info\+\_\+dir\+To\+Str (\begin{DoxyParamCaption}\item[{elev\+\_\+motor\+\_\+direction\+\_\+t}]{dir }\end{DoxyParamCaption})}
+
+
+
+Turns a {\ttfamily direction} into a string ({\ttfamily char} {\ttfamily $\ast$} in {\ttfamily C}) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily char} {\ttfamily $\ast$} containing the current/last direction of {\ttfamily elevator}. 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file info.\+c.
+
+\mbox{\Hypertarget{info_8h_a0cfef5a091252f865e4f70fe1ec28a04}\label{info_8h_a0cfef5a091252f865e4f70fe1ec28a04}} 
+\index{info.h@{info.h}!info\_printStatus@{info\_printStatus}}
+\index{info\_printStatus@{info\_printStatus}!info.h@{info.h}}
+\subsubsection{\texorpdfstring{info\_printStatus()}{info\_printStatus()}}
+{\footnotesize\ttfamily void info\+\_\+print\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}}}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Prints info about the {\ttfamily elevator} to console,. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file info.\+c.
+
+\mbox{\Hypertarget{info_8h_ac0446c88d37217ca7b9326cee3775042}\label{info_8h_ac0446c88d37217ca7b9326cee3775042}} 
+\index{info.h@{info.h}!info\_stateToStr@{info\_stateToStr}}
+\index{info\_stateToStr@{info\_stateToStr}!info.h@{info.h}}
+\subsubsection{\texorpdfstring{info\_stateToStr()}{info\_stateToStr()}}
+{\footnotesize\ttfamily char$\ast$ info\+\_\+state\+To\+Str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_a895a95c837e23afd3f65d85733fd09bc}{fsm\+\_\+state\+\_\+t}}}]{state }\end{DoxyParamCaption})}
+
+
+
+Turns a {\ttfamily state} into a string ({\ttfamily char} {\ttfamily $\ast$} in {\ttfamily C}) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily char} {\ttfamily $\ast$} containing the current state of {\ttfamily elevator}. 
+\end{DoxyReturn}
+
+
+Definition at line 7 of file info.\+c.
+

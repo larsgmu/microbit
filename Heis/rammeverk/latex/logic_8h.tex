@@ -1,0 +1,137 @@
+\hypertarget{logic_8h}{}\section{source/logic.h File Reference}
+\label{logic_8h}\index{source/logic.h@{source/logic.h}}
+
+
+A simple library for doing logical actions/requests and get functions.  
+
+
+{\ttfamily \#include \char`\"{}state.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{logic_8h_a030f86e808dcad22d6aba9b539704571}{logic\+\_\+update\+Lights}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} elevator)
+\begin{DoxyCompactList}\small\item\em Checks if a button is pressed, if so lights it up. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{logic_8h_a56baa6d7881f6070bd9977e1561d88e8}{logic\+\_\+check\+Stop\+Btn}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if stop button is pressed, if so -\/ changes the state of the fsm. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{logic_8h_af77fb1b79cfe503b8570f48cb2096280}{logic\+\_\+should\+I\+Stop}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if the elevator should stop at the floor it\textquotesingle{}s currently at/passing, by checking the queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{logic_8h_aceca43e2460c324d3e0b02a5bcf2b22a}{logic\+\_\+has\+Orders\+Above}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if there are orders above the {\ttfamily current\+Floor} of {\ttfamily elevator}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{logic_8h_a29dd091fc6804ea12afdfd78dbde89d3}{logic\+\_\+has\+Orders\+Below}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if there are orders below the {\ttfamily current\+Floor} of {\ttfamily elevator}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple library for doing logical actions/requests and get functions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{logic_8h_a56baa6d7881f6070bd9977e1561d88e8}\label{logic_8h_a56baa6d7881f6070bd9977e1561d88e8}} 
+\index{logic.h@{logic.h}!logic\_checkStopBtn@{logic\_checkStopBtn}}
+\index{logic\_checkStopBtn@{logic\_checkStopBtn}!logic.h@{logic.h}}
+\subsubsection{\texorpdfstring{logic\_checkStopBtn()}{logic\_checkStopBtn()}}
+{\footnotesize\ttfamily int logic\+\_\+check\+Stop\+Btn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if stop button is pressed, if so -\/ changes the state of the fsm. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily 1} if stop button is pressed, {\ttfamily 0} if not. 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file logic.\+c.
+
+\mbox{\Hypertarget{logic_8h_aceca43e2460c324d3e0b02a5bcf2b22a}\label{logic_8h_aceca43e2460c324d3e0b02a5bcf2b22a}} 
+\index{logic.h@{logic.h}!logic\_hasOrdersAbove@{logic\_hasOrdersAbove}}
+\index{logic\_hasOrdersAbove@{logic\_hasOrdersAbove}!logic.h@{logic.h}}
+\subsubsection{\texorpdfstring{logic\_hasOrdersAbove()}{logic\_hasOrdersAbove()}}
+{\footnotesize\ttfamily int logic\+\_\+has\+Orders\+Above (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if there are orders above the {\ttfamily current\+Floor} of {\ttfamily elevator}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on if {\ttfamily elevator} has orders above {\ttfamily current\+Floor}, 0 if not. 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file logic.\+c.
+
+\mbox{\Hypertarget{logic_8h_a29dd091fc6804ea12afdfd78dbde89d3}\label{logic_8h_a29dd091fc6804ea12afdfd78dbde89d3}} 
+\index{logic.h@{logic.h}!logic\_hasOrdersBelow@{logic\_hasOrdersBelow}}
+\index{logic\_hasOrdersBelow@{logic\_hasOrdersBelow}!logic.h@{logic.h}}
+\subsubsection{\texorpdfstring{logic\_hasOrdersBelow()}{logic\_hasOrdersBelow()}}
+{\footnotesize\ttfamily int logic\+\_\+has\+Orders\+Below (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if there are orders below the {\ttfamily current\+Floor} of {\ttfamily elevator}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on if {\ttfamily elevator} has orders below {\ttfamily current\+Floor}, 0 if not. 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file logic.\+c.
+
+\mbox{\Hypertarget{logic_8h_af77fb1b79cfe503b8570f48cb2096280}\label{logic_8h_af77fb1b79cfe503b8570f48cb2096280}} 
+\index{logic.h@{logic.h}!logic\_shouldIStop@{logic\_shouldIStop}}
+\index{logic\_shouldIStop@{logic\_shouldIStop}!logic.h@{logic.h}}
+\subsubsection{\texorpdfstring{logic\_shouldIStop()}{logic\_shouldIStop()}}
+{\footnotesize\ttfamily int logic\+\_\+should\+I\+Stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if the elevator should stop at the floor it\textquotesingle{}s currently at/passing, by checking the queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it\textquotesingle{}s not supposed to stop, 1 if the queue in {\ttfamily elevator} has a order on that floor. 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file logic.\+c.
+
+\mbox{\Hypertarget{logic_8h_a030f86e808dcad22d6aba9b539704571}\label{logic_8h_a030f86e808dcad22d6aba9b539704571}} 
+\index{logic.h@{logic.h}!logic\_updateLights@{logic\_updateLights}}
+\index{logic\_updateLights@{logic\_updateLights}!logic.h@{logic.h}}
+\subsubsection{\texorpdfstring{logic\_updateLights()}{logic\_updateLights()}}
+{\footnotesize\ttfamily void logic\+\_\+update\+Lights (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}}}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if a button is pressed, if so lights it up. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5 of file logic.\+c.
+

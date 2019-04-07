@@ -1,0 +1,128 @@
+\hypertarget{fsm_8h}{}\section{source/fsm.h File Reference}
+\label{fsm_8h}\index{source/fsm.h@{source/fsm.h}}
+
+
+A module containing all fsm functions.  
+
+
+{\ttfamily \#include \char`\"{}logic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}info.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fsm_8h_a411cbea646982aa02ab03efcb85f32d9}{fsm\+\_\+start\+Elev}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Basic initialization, sends the elevator to the nearest floor, and updates its variables. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{fsm_8h_acc5f3e25a254898bba639f554cbf5c29}{fsm\+\_\+between\+Floors}} ()
+\begin{DoxyCompactList}\small\item\em A simple trigger function checking if the elevator, is currently between two floors. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{fsm_8h_aeb48b6ee83f93d3f5549fb37603000fe}{fsm\+\_\+at\+Floor}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em A trigger function checking if the elevator is currently at a floor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{fsm_8h_ab8ba6aee742a30469edeec4f0148b07e}{fsm\+\_\+main\+Loop}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Runs the elevator system and handling based on the elevator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{fsm_8h_a081e95b0202c94a5c102374c9fd72532}{fsm\+\_\+state\+Error}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Restarting the system if {\ttfamily current\+Floor} is between floors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A module containing all fsm functions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fsm_8h_aeb48b6ee83f93d3f5549fb37603000fe}\label{fsm_8h_aeb48b6ee83f93d3f5549fb37603000fe}} 
+\index{fsm.h@{fsm.h}!fsm\_atFloor@{fsm\_atFloor}}
+\index{fsm\_atFloor@{fsm\_atFloor}!fsm.h@{fsm.h}}
+\subsubsection{\texorpdfstring{fsm\_atFloor()}{fsm\_atFloor()}}
+{\footnotesize\ttfamily int fsm\+\_\+at\+Floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+A trigger function checking if the elevator is currently at a floor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Elevator {\ttfamily struct}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the elevator is at a floor and set the floor indicator light. 0 if not at a floor. 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file fsm.\+c.
+
+\mbox{\Hypertarget{fsm_8h_acc5f3e25a254898bba639f554cbf5c29}\label{fsm_8h_acc5f3e25a254898bba639f554cbf5c29}} 
+\index{fsm.h@{fsm.h}!fsm\_betweenFloors@{fsm\_betweenFloors}}
+\index{fsm\_betweenFloors@{fsm\_betweenFloors}!fsm.h@{fsm.h}}
+\subsubsection{\texorpdfstring{fsm\_betweenFloors()}{fsm\_betweenFloors()}}
+{\footnotesize\ttfamily int fsm\+\_\+between\+Floors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A simple trigger function checking if the elevator, is currently between two floors. 
+
+\begin{DoxyReturn}{Returns}
+1 if {\ttfamily elevator} is between two floors, 0 if not. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file fsm.\+c.
+
+\mbox{\Hypertarget{fsm_8h_ab8ba6aee742a30469edeec4f0148b07e}\label{fsm_8h_ab8ba6aee742a30469edeec4f0148b07e}} 
+\index{fsm.h@{fsm.h}!fsm\_mainLoop@{fsm\_mainLoop}}
+\index{fsm\_mainLoop@{fsm\_mainLoop}!fsm.h@{fsm.h}}
+\subsubsection{\texorpdfstring{fsm\_mainLoop()}{fsm\_mainLoop()}}
+{\footnotesize\ttfamily void fsm\+\_\+main\+Loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Runs the elevator system and handling based on the elevator. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file fsm.\+c.
+
+\mbox{\Hypertarget{fsm_8h_a411cbea646982aa02ab03efcb85f32d9}\label{fsm_8h_a411cbea646982aa02ab03efcb85f32d9}} 
+\index{fsm.h@{fsm.h}!fsm\_startElev@{fsm\_startElev}}
+\index{fsm\_startElev@{fsm\_startElev}!fsm.h@{fsm.h}}
+\subsubsection{\texorpdfstring{fsm\_startElev()}{fsm\_startElev()}}
+{\footnotesize\ttfamily void fsm\+\_\+start\+Elev (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Basic initialization, sends the elevator to the nearest floor, and updates its variables. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em elevator} & Elevator {\ttfamily struct}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file fsm.\+c.
+
+\mbox{\Hypertarget{fsm_8h_a081e95b0202c94a5c102374c9fd72532}\label{fsm_8h_a081e95b0202c94a5c102374c9fd72532}} 
+\index{fsm.h@{fsm.h}!fsm\_stateError@{fsm\_stateError}}
+\index{fsm\_stateError@{fsm\_stateError}!fsm.h@{fsm.h}}
+\subsubsection{\texorpdfstring{fsm\_stateError()}{fsm\_stateError()}}
+{\footnotesize\ttfamily void fsm\+\_\+state\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Restarting the system if {\ttfamily current\+Floor} is between floors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file fsm.\+c.
+

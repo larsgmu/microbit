@@ -1,7 +1,7 @@
 /**
  * @file
- * @brief A simple library for doing operations on memory
- * buffers consisting of integers
+ * @brief A library for handling actions on the queue
+ *
  */
 
 #ifndef QUEUE_H

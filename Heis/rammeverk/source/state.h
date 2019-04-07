@@ -21,7 +21,7 @@ typedef enum tag_fsm_state {
 
 /**
  * @brief Struct containing @c state @c currentFloor @c lastDir
- * and @queSys which is used for storing the variables during runtime.
+ * and @c queSys which is used for storing the variables during runtime.
  */
 typedef struct tag_fsm_vars_t{
 fsm_state_t state;

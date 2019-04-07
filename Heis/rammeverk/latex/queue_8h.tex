@@ -1,0 +1,107 @@
+\hypertarget{queue_8h}{}\section{source/queue.h File Reference}
+\label{queue_8h}\index{source/queue.h@{source/queue.h}}
+
+
+A library for handling actions on the queue.  
+
+
+{\ttfamily \#include \char`\"{}state.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}logic.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{queue_8h_a3e49c77660c3b3c9bd5dc612385d46d8}{queue\+\_\+clear\+Floor}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Sets all the parameters to the current floor in the queue to 0, and updates the ligths. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue_8h_a4bfee79c26b21376e075276c1bc00420}{queue\+\_\+clear\+All}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Sets all the parameters in the queue to 0, and updates the ligths. \end{DoxyCompactList}\item 
+elev\+\_\+motor\+\_\+direction\+\_\+t \mbox{\hyperlink{queue_8h_ae966b870581ccf07d927f6736b88d0c7}{queue\+\_\+get\+Next\+Dir}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks what the next direction is based on {\ttfamily current\+Floor} and/or {\ttfamily last\+Dir}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{queue_8h_a9c0ef8230007d36e7c9a2eecf29ab973}{queue\+\_\+check\+Buttons}} (\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if any buttons are pushed and sets them in the queue if true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A library for handling actions on the queue. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue_8h_a9c0ef8230007d36e7c9a2eecf29ab973}\label{queue_8h_a9c0ef8230007d36e7c9a2eecf29ab973}} 
+\index{queue.h@{queue.h}!queue\_checkButtons@{queue\_checkButtons}}
+\index{queue\_checkButtons@{queue\_checkButtons}!queue.h@{queue.h}}
+\subsubsection{\texorpdfstring{queue\_checkButtons()}{queue\_checkButtons()}}
+{\footnotesize\ttfamily void queue\+\_\+check\+Buttons (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks if any buttons are pushed and sets them in the queue if true. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a4bfee79c26b21376e075276c1bc00420}\label{queue_8h_a4bfee79c26b21376e075276c1bc00420}} 
+\index{queue.h@{queue.h}!queue\_clearAll@{queue\_clearAll}}
+\index{queue\_clearAll@{queue\_clearAll}!queue.h@{queue.h}}
+\subsubsection{\texorpdfstring{queue\_clearAll()}{queue\_clearAll()}}
+{\footnotesize\ttfamily void queue\+\_\+clear\+All (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Sets all the parameters in the queue to 0, and updates the ligths. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 13 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a3e49c77660c3b3c9bd5dc612385d46d8}\label{queue_8h_a3e49c77660c3b3c9bd5dc612385d46d8}} 
+\index{queue.h@{queue.h}!queue\_clearFloor@{queue\_clearFloor}}
+\index{queue\_clearFloor@{queue\_clearFloor}!queue.h@{queue.h}}
+\subsubsection{\texorpdfstring{queue\_clearFloor()}{queue\_clearFloor()}}
+{\footnotesize\ttfamily void queue\+\_\+clear\+Floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Sets all the parameters to the current floor in the queue to 0, and updates the ligths. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_ae966b870581ccf07d927f6736b88d0c7}\label{queue_8h_ae966b870581ccf07d927f6736b88d0c7}} 
+\index{queue.h@{queue.h}!queue\_getNextDir@{queue\_getNextDir}}
+\index{queue\_getNextDir@{queue\_getNextDir}!queue.h@{queue.h}}
+\subsubsection{\texorpdfstring{queue\_getNextDir()}{queue\_getNextDir()}}
+{\footnotesize\ttfamily elev\+\_\+motor\+\_\+direction\+\_\+t queue\+\_\+get\+Next\+Dir (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Checks what the next direction is based on {\ttfamily current\+Floor} and/or {\ttfamily last\+Dir}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Elevator {\ttfamily struct} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A {\ttfamily elev\+\_\+motor\+\_\+direction\+\_\+t} based on {\ttfamily current\+Floor} and/or {\ttfamily last\+Dir}. Default D\+I\+R\+N\+\_\+\+S\+T\+OP 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file queue.\+c.
+

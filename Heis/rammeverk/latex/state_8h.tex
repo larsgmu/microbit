@@ -1,0 +1,40 @@
+\hypertarget{state_8h}{}\section{source/state.h File Reference}
+\label{state_8h}\index{source/state.h@{source/state.h}}
+
+
+Module containing enum for the different states and the struct with the variables used by the state machine.  
+
+
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtag__fsm__vars__t}{tag\+\_\+fsm\+\_\+vars\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Struct containing {\ttfamily state} {\ttfamily current\+Floor} {\ttfamily last\+Dir} and {\ttfamily que\+Sys} which is used for storing the variables during runtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{state_8h_a895a95c837e23afd3f65d85733fd09bc}\label{state_8h_a895a95c837e23afd3f65d85733fd09bc}} 
+typedef enum \mbox{\hyperlink{state_8h_a02883701ddc722590fb4d1df234cb7ab}{tag\+\_\+fsm\+\_\+state}} \mbox{\hyperlink{state_8h_a895a95c837e23afd3f65d85733fd09bc}{fsm\+\_\+state\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Enum containing all states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{state_8h_ae08035a724855f50debe8a6d44b14b39}\label{state_8h_ae08035a724855f50debe8a6d44b14b39}} 
+typedef struct \mbox{\hyperlink{structtag__fsm__vars__t}{tag\+\_\+fsm\+\_\+vars\+\_\+t}} \mbox{\hyperlink{state_8h_ae08035a724855f50debe8a6d44b14b39}{fsm\+\_\+vars\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Struct containing {\ttfamily state} {\ttfamily current\+Floor} {\ttfamily last\+Dir} and {\ttfamily que\+Sys} which is used for storing the variables during runtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{state_8h_a02883701ddc722590fb4d1df234cb7ab}\label{state_8h_a02883701ddc722590fb4d1df234cb7ab}} 
+enum \mbox{\hyperlink{state_8h_a02883701ddc722590fb4d1df234cb7ab}{tag\+\_\+fsm\+\_\+state}} \{ \newline
+{\bfseries I\+D\+LE}, 
+{\bfseries M\+O\+V\+I\+NG}, 
+{\bfseries D\+O\+O\+R\+\_\+\+O\+P\+EN}, 
+{\bfseries S\+T\+O\+P\+P\+ED}, 
+\newline
+{\bfseries I\+N\+IT}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum containing all states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module containing enum for the different states and the struct with the variables used by the state machine. 
+
