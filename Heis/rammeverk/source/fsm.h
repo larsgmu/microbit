@@ -50,13 +50,4 @@ int fsm_atFloor(fsm_vars_t* elevator);
  */
 void fsm_mainLoop(fsm_vars_t* elevator);
 
-/**
- * @brief Restarting the system if @c currentFloor is
- * between floors
- *
- * @param[in] elevator Elevator @c struct
- */
-void fsm_stateError(fsm_vars_t* elevator);
-
-
 #endif

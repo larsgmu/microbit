@@ -22,5 +22,6 @@ void timer_startTimer();
  */
 int timer_timeIsUp();
 
+void timer_stopTimer();
 
 #endif

@@ -103,10 +103,8 @@ int elev_get_floor_sensor_signal(void) {
         return -1;
 }
 
-int elev_set_floor_indicator(int floor) {
-    if(!(floor >= 0)){
-      return 0;
-    }
+void elev_set_floor_indicator(int floor) {
+    assert(floor >= 0);
     assert(floor < N_FLOORS);
 
     // Binary encoding. One light must always be on.
@@ -121,7 +119,6 @@ int elev_set_floor_indicator(int floor) {
         io_clear_bit(LIGHT_FLOOR_IND2);
 
 
-    return 0;
 }
 
 int elev_get_button_signal(elev_button_type_t button, int floor) {

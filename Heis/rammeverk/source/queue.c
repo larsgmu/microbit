@@ -18,49 +18,54 @@ void queue_clearAll(fsm_vars_t* elevator){
       elevator->queue[floor][button] = 0;
     }
   }
-  //elevator->currentFloor  = elev_get_floor_sensor_signal();
-  logic_updateLights(*elevator);
 
+  logic_updateLights(*elevator);
 }
 
 elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
   switch (elevator->lastDir) {
     case DIRN_DOWN:
-      //if it is orders below continue down
+      //if it is orders below - continue down.
       if(logic_hasOrdersBelow(elevator)){
         return elevator->lastDir = DIRN_DOWN;
       }
 
     case DIRN_UP:
-      //if it is orders abow continue up
+      //if it is orders above - continue up.
       if (logic_hasOrdersAbove(elevator)){
         return elevator->lastDir = DIRN_UP;
       }
 
     case DIRN_STOP:
+      //If between floors
       if(elev_get_floor_sensor_signal()==-1){
         for(int floor = 0; floor < N_FLOORS; floor++){
           for(int button=0; button<N_BUTTONS; button++){
-
+            //if button called on a floor below the current floor - go down.
             if(elev_get_button_signal(button,floor) && elevator->currentFloor>floor){
               return DIRN_DOWN;
             }
+            //if button called on a floor above the current floor - go up.
             if(elev_get_button_signal(button,floor) && elevator->currentFloor<floor){
               return DIRN_UP;
             }
+            
+            //if button called on the current floor and the last direction was down(implies that the elevator is below currentFloor) - go up.
             if(elev_get_button_signal(button,floor) && elevator->currentFloor==floor && elevator->lastDir == DIRN_DOWN){
               return DIRN_UP;
             }
+            //if button called on the current floor and the last direction was up(implies that the elevator is above currentFloor) - go down.
             if(elev_get_button_signal(button,floor) && elevator->currentFloor==floor && elevator->lastDir == DIRN_UP){
               return DIRN_DOWN;
             }
           }
         }
-
       }
+      //If at a floor and has orders above - go up.
       if(logic_hasOrdersAbove(elevator)){
         return elevator->lastDir = DIRN_UP;
       }
+      //If at a floor and has orders below - go down.
       if(logic_hasOrdersBelow(elevator)){
         return elevator->lastDir = DIRN_DOWN;
       }
@@ -70,8 +75,8 @@ elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
   }
 }
 
+//Iterate through all buttons, if pressed - add the floor/button to queue and light lamp.
 void queue_checkButtons(fsm_vars_t* elevator){
-
     for(int floor=0; floor< N_FLOORS; floor++){
         for(int button=0; button < N_BUTTONS; button++){
             if(elev_get_button_signal(button,floor)){

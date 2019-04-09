@@ -22,7 +22,7 @@ typedef enum tag_fsm_state {
 /**
  * @brief Struct containing @c state @c currentFloor @c lastDir
  * and @c queue which are all used for storing the variables during runtime,
- * and hold crictical information.
+ * and hold crictical information like the queue, wich is a @c N_FLOORS @c * @c N_BUTTONS matrix.
  */
 typedef struct tag_fsm_vars_t{
 fsm_state_t state;

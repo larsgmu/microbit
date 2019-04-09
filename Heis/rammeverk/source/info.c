@@ -1,7 +1,7 @@
 #include "info.h"
 
 void info_printStatus(fsm_vars_t elevator){
-    printf("\n\n\n#### ELEVATOR INFO ####\n\nState: %s\nCurrent/Last Floor: %d\nLast Direction: %s\n",info_stateToStr(elevator.state),(elevator.currentFloor +1),info_dirToStr(elevator.lastDir));
+    printf("\n\n\n#### ELEVATOR INFO ####\n\nState: %s\nCurrent/Last Floor: %d\nLast Direction: %s\n", info_stateToStr( elevator.state ), ( elevator.currentFloor + 1 ), info_dirToStr( elevator.lastDir ) );
 }
 
 char* info_stateToStr(fsm_state_t state){
