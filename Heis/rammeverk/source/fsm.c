@@ -99,11 +99,11 @@ void fsm_mainLoop(fsm_vars_t* elevator){
                 elev_set_door_open_lamp(1);
                 elev_set_stop_lamp(1);
               }
-              
+
               timer_started=0;
               elev_set_stop_lamp(0);
               elevator->state = DOOR_OPEN;
-            }
+
               break;
             default:
               break;
