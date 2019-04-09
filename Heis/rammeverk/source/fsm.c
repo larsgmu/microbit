@@ -8,7 +8,7 @@ void fsm_startElev(fsm_vars_t* elevator){
   elev_set_motor_direction(DIRN_DOWN);
   for (int i = 0; i < N_FLOORS; i++){
     for (int j = 0; j< N_BUTTONS; j++){
-      elevator->queSys[i][j] = 0;
+      elevator->queue[i][j] = 0;
     }
   }
 
@@ -141,7 +141,7 @@ void fsm_mainLoop(fsm_vars_t* elevator){
         }
       }
 
-  if(timer_hodor()){
+  if(timer_timeIsUp()){
       switch (elevator->state) {
         case DOOR_OPEN:
           timer_started = 0;

@@ -20,7 +20,7 @@ void timer_startTimer();
  *
  * @return 1 if its gone by 3 seconds, and 0 if not.
  */
-int timer_hodor();
+int timer_timeIsUp();
 
 
 #endif
