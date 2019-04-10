@@ -1,7 +1,4 @@
-#include "elev.h"
 #include "fsm.h"
-#include <stdio.h>
-
 
 int main() {
     // Initialize hardware
@@ -10,38 +7,14 @@ int main() {
         return 1;
     }
 
-    printf("Press STOP button to stop elevator and exit program.\n");
+    //Create a instance of a fsm_vars_t struct(the struct holds all the important variables), and set its initial state to INIT.
+    fsm_vars_t heiSveis = {INIT};
 
-    fsm_vars_t e = {
-      MOVING
-    };
-    elev_start(e);
+    //Run start sequence
+    fsm_startElev(&heiSveis);
 
-
-
-    while (1){
-        // Change direction when we reach top/bottom floor
-        /*if (elev_get_floor_sensor_signal() == N_FLOORS - 1) {
-            elev_set_motor_direction(DIRN_DOWN);
-        } else if (elev_get_floor_sensor_signal() == 0) {
-            elev_set_motor_direction(DIRN_UP);
-        }*/
-
-        //printf("STATE: %d\n", (int)e.state);
-
-
-        buttonCheck(e);
-        updateLights(e);
-
-
-        // Stop elevator and exit program if the stop button is pressed
-        if (elev_get_stop_signal()) {
-            elev_set_motor_direction(DIRN_STOP);
-            break;
-        }
-    }
-
-    //fsmRunMainLoop();
+    //Run main loop
+    fsm_mainLoop(&heiSveis);
 
     return 0;
 }

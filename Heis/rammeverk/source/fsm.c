@@ -156,7 +156,6 @@ void fsm_mainLoop(fsm_vars_t* elevator){
           timer_started = 0;
           elev_set_door_open_lamp(0);
           elevator->state = IDLE;
-          printf("\n\nFEILHER");
           info_printStatus(*elevator);
           break;
 

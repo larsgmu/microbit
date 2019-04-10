@@ -1,12 +1,27 @@
+/**
+ * @file
+ * @brief A simple library for time functions.
+ */
+
 #ifndef TIMER_H
 #define TIMER_H
-#include "elev.h"
 
+#include <time.h>
 
-//VARS
-bool door;
+/**
+ * @brief Sets the global variable @c start_time to @c time(NULL),
+ * in other words - resetting the timer.
+ */
+void timer_startTimer();
 
-//PUBLIC
-int openDoor();
+/**
+ * @brief Creates a local timer and compares it to the
+ * timer started by @c timer_startTimer()
+ *
+ * @return 1 if its gone by 3 seconds, and 0 if not.
+ */
+int timer_timeIsUp();
+
+void timer_stopTimer();
 
 #endif

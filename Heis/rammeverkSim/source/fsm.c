@@ -1,145 +1,176 @@
 #include "fsm.h"
 
-
-
-
-
-
-//Sjekker om det er bestillinger over gjeldende etasje, retunerer bool(som er int i C)
-int hasOrdersAbove(fsm_vars_t elevator){
-    for (int i = (elevator.currentFloor+1); i<N_FLOORS; i++){
-        for (int p = 0; p < N_BUTTONS; p++){
-            if (elevator.queSys[i][p])
-                return 1;
-        }
-    }
-    return 0;
-}
-
-int hasOrdersBelow(fsm_vars_t elevator){
-    for(int i = 0; i<elevator.currentFloor; i++){
-        for (int p = 0; p < N_BUTTONS; p++){
-            if (elevator.queSys[i][p])
-                return 1;
-        }
-    }
-    return 0;
-}
-
-
-/*
-
-Bruker shouldISTop her:
-
-if (getFloor != -1){
-        shouldIStop();
-    }
-*/
-
-
-void elev_start(fsm_vars_t elevator){
-  elevator.state = MOVING;
-  elevator.dir = DIRN_DOWN;
-  elevator.targetFloor = 0;
-  elevator.currentFloor = -1;
+void fsm_startElev(fsm_vars_t* elevator){
+  printf("\n\nInitializing elevator... \n\n");
+  elevator->state = INIT;
+  elevator->currentFloor  = -1;
   elev_set_motor_direction(DIRN_DOWN);
-
+  //Reset queue
   for (int i = 0; i < N_FLOORS; i++){
     for (int j = 0; j< N_BUTTONS; j++){
-      elevator.queSys[i][j] = 0;
+      elevator->queue[i][j] = 0;
     }
   }
+  //If between floor - hold code until elevator reaches any floor.
+  while(elev_get_floor_sensor_signal() == -1){}
 
-  while(elevator.currentFloor != elevator.targetFloor){
-    if(elev_get_floor_sensor_signal()!=-1){
-      elevator.currentFloor = elev_get_floor_sensor_signal();
-    }
-  }
-
-  elevator.state=IDLE;
-  elevator.dir =  DIRN_STOP;
+  elevator->currentFloor = elev_get_floor_sensor_signal();
+  elevator->state = IDLE;
+  elevator->lastDir =  DIRN_STOP;
   elev_set_motor_direction(DIRN_STOP);
-
-
+  logic_updateLights(*elevator);
+  printf("\nElevator initialized! \n");
+  info_printStatus(*elevator);
 }
 
-int shouldIStop(fsm_vars_t elevator){
-
-    switch (elevator.dir) {
-        case DIRN_UP:
-            return
-                elevator.queSys[elevator.currentFloor][1] ||
-                elevator.queSys[elevator.currentFloor][2] ||
-                !hasOrdersAbove(elevator);
-        case DIRN_DOWN:
-            return
-                elevator.queSys[elevator.currentFloor][0] ||
-                elevator.queSys[elevator.currentFloor][2] ||
-                !hasOrdersBelow(elevator);
-        case DIRN_STOP:
-        default:
-            return 1;
-    }
-
+int fsm_betweenFloors(){
+  if(elev_get_floor_sensor_signal() == -1){
+    return 1;
+  }
+  return 0;
 }
 
-//Oppdatterer lysene for knappene
-void updateLights(fsm_vars_t elevator){
-    for (int floor = 0; floor<N_FLOORS; floor++){
-        for (int button = 0; button < N_BUTTONS; button++){
-             elev_set_button_lamp(button, floor, elevator.queSys[floor][button]);
-        }
-    }
+int fsm_atFloor(fsm_vars_t* elevator){
+  //Currfloor is a temporary variable from the floor sensor to prevent setting floorlight in case of buggy sensor.
+  int currFloor = elev_get_floor_sensor_signal();
+  if(currFloor!=-1){
+    elevator->currentFloor = currFloor;
+    elev_set_floor_indicator(currFloor);
+    if(elevator->state == MOVING){
+      info_printStatus(*elevator);
+      }
+    return 1;
+  }
+  return 0;
 }
 
-void buttonCheck(fsm_vars_t elevator){
-
-    for(int i=0; i< N_FLOORS; i++){
-        for(int j=0; j < N_BUTTONS; j++){
-            if(elev_get_button_signal(j,i)){
-                elevator.queSys[i][j] = 1;
-            }
-        }
-    }
-}
-
-void clearFloor(fsm_vars_t elevator){
-    elevator.queSys[elevator.currentFloor][0]=0;
-    elevator.queSys[elevator.currentFloor][1]=0;
-    elevator.queSys[elevator.currentFloor][2]=0;
-    updateLights(elevator);
-}
-
-void fsmRunMainLoop(fsm_vars_t elevator){
-
+void fsm_mainLoop(fsm_vars_t* elevator){
+  int timer_started = 0;
   while(1) {
+    if (fsm_atFloor(elevator)){
 
-
-
-/*
-
-    if (arrivedAtFloor()){
-        swich(elev.state){
+        switch(elevator->state){
             case IDLE:
+              //Poll floor and cab buttons.
+              queue_checkButtons(elevator);
+              queue_clearFloor(elevator);
+              //If next direction is not Stop - change state.
+              if(((int)queue_getNextDir(elevator))!=0){
+                elev_set_motor_direction(queue_getNextDir(elevator));
+                elevator->state = MOVING;
+                info_printStatus(*elevator);
+              }
+              //Always poll stop button.
+              if(logic_checkStopBtn(elevator)){
+                queue_clearAll(elevator);
+              }
+              break;
 
             case MOVING:
+              queue_checkButtons(elevator);
+              if(logic_shouldIStop(elevator)){
+                elevator->state = DOOR_OPEN;
+                info_printStatus(*elevator);
+                elev_set_motor_direction(DIRN_STOP);
+              }
+              if(logic_checkStopBtn(elevator)){
+                queue_clearAll(elevator);
+              }
+              break;
 
-            case ARRIVED:
+            case DOOR_OPEN:
+              queue_checkButtons(elevator);
+              queue_clearFloor(elevator);
+              if(timer_started==0){
+                  timer_startTimer();
+                  elev_set_door_open_lamp(1);
+                  timer_started=1;
+              }
+              if(logic_checkStopBtn(elevator)){
+                queue_clearAll(elevator);
+              }
+              break;
 
             case STOPPED:
+              timer_stopTimer();
+              elev_set_motor_direction(DIRN_STOP);
+              while(elev_get_stop_signal()){
+                queue_clearAll(elevator);
+                elev_set_door_open_lamp(1);
+                elev_set_stop_lamp(1);
+              }
 
+              timer_started=0;
+              elev_set_stop_lamp(0);
+              elevator->state = DOOR_OPEN;
 
+              break;
+            default:
+              break;
         }
+        //Lets you order while timer is running.
+        queue_checkButtons(elevator);
     }
 
-    //if (doorTimerEnded())
+    if(fsm_betweenFloors()){
+      switch(elevator->state){
+
+        case IDLE:
+          queue_checkButtons(elevator);
+          if((int)queue_getNextDir(elevator)){
+            elev_set_motor_direction(queue_getNextDir(elevator));
+            elevator->state = MOVING;
+            info_printStatus(*elevator);
+          }
+          if(logic_checkStopBtn(elevator)){
+            queue_clearAll(elevator);
+          }
+          break;
+
+        case MOVING:
+          queue_checkButtons(elevator);
+          if(logic_checkStopBtn(elevator)){
+            queue_clearAll(elevator);
+          }
+          break;
+
+        case STOPPED:
+          elev_set_motor_direction(DIRN_STOP);
+          queue_clearAll(elevator);
+          while(elev_get_stop_signal()){
+            elev_set_stop_lamp(1);
+          }
+          elev_set_stop_lamp(0);
+          elevator->state = IDLE;
+          info_printStatus(*elevator);
+          break;
+
+        default:
+          break;
+        }
+      }
+
+  if(timer_timeIsUp()){
+      switch (elevator->state) {
+        case DOOR_OPEN:
+          timer_started = 0;
+          elev_set_door_open_lamp(0);
+          elevator->state = IDLE;
+          info_printStatus(*elevator);
+          break;
+
+        case STOPPED:
+          timer_started = 0;
+          elev_set_door_open_lamp(0);
+          elevator->state = IDLE;
+          info_printStatus(*elevator);
+
+          break;
+        default:
+          break;
+      }
+    }
 
 
-*/
   }
 }
-
-
-
-//SPØRSMÅL
-//typedef enum |navn| {} navn;
