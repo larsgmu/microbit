@@ -24,7 +24,7 @@ int timer_timeIsUp() {
   return 0;
 }
 
-void timer_stopTimer(){
+void timer_resetTimer(){
 
   timer_is_active = 0;
 

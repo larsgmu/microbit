@@ -22,6 +22,10 @@ void timer_startTimer();
  */
 int timer_timeIsUp();
 
-void timer_stopTimer();
+/**
+ * @brief Sets the global variable
+ * timer_is_active to 0.
+ */
+void timer_resetTimer();
 
 #endif

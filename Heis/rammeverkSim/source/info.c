@@ -9,7 +9,7 @@ char* info_stateToStr(fsm_state_t state){
       case IDLE: return "IDLE";
       case MOVING: return "MOVING";
       case DOOR_OPEN: return "DOOR OPEN";
-      case STOPPED: return "STOPPED";
+      case EMERGENCY_STOP: return "EMERGENCY STOP";
       case INIT: return "INIT";
     }
 }
@@ -18,6 +18,6 @@ char* info_dirToStr(elev_motor_direction_t dir){
     switch (dir) {
       case DIRN_UP: return "UP";
       case DIRN_DOWN: return "DOWN";
-      case DIRN_STOP: return "STOPPED";
+      case DIRN_STOP: return "STOP";
     }
 }
