@@ -28,14 +28,16 @@ elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
       //if it is orders below - continue down.
       if(logic_hasOrdersBelow(elevator)){
         elevator->currDir = DIRN_DOWN;
-        return elevator->lastDir = DIRN_DOWN;
+        elevator->lastDir = DIRN_DOWN;
+        return DIRN_DOWN;
       }
 
     case DIRN_UP:
       //if it is orders above - continue up.
       if (logic_hasOrdersAbove(elevator)){
         elevator->currDir = DIRN_UP;
-        return elevator->lastDir = DIRN_UP;
+        elevator->lastDir = DIRN_UP;
+        return DIRN_UP;
       }
 
     case DIRN_STOP:
@@ -70,12 +72,14 @@ elev_motor_direction_t queue_getNextDir(fsm_vars_t* elevator){
       //If at a floor and has orders above - go up.
       if(logic_hasOrdersAbove(elevator)){
         elevator->currDir = DIRN_UP;
-        return elevator->lastDir = DIRN_UP;
+        elevator->lastDir = DIRN_UP;
+        return DIRN_UP;
       }
       //If at a floor and has orders below - go down.
       if(logic_hasOrdersBelow(elevator)){
         elevator->currDir = DIRN_DOWN;
-        return elevator->lastDir = DIRN_DOWN;
+        elevator->lastDir = DIRN_DOWN;
+        return DIRN_DOWN;
       }
     default:
       return DIRN_STOP;
