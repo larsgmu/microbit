@@ -91,15 +91,14 @@ void fsm_mainLoop(fsm_vars_t* elevator){
               }
               break;
 
-            case STOPPED:
-              timer_stopTimer();
+            case EMERGENCY_STOP:
+              timer_resetTimer();
               elev_set_motor_direction(DIRN_STOP);
               while(elev_get_stop_signal()){
                 queue_clearAll(elevator);
                 elev_set_door_open_lamp(1);
                 elev_set_stop_lamp(1);
               }
-
               timer_started=0;
               elev_set_stop_lamp(0);
               elevator->state = DOOR_OPEN;
@@ -134,7 +133,7 @@ void fsm_mainLoop(fsm_vars_t* elevator){
           }
           break;
 
-        case STOPPED:
+        case EMERGENCY_STOP:
           elev_set_motor_direction(DIRN_STOP);
           queue_clearAll(elevator);
           while(elev_get_stop_signal()){
@@ -159,7 +158,7 @@ void fsm_mainLoop(fsm_vars_t* elevator){
           info_printStatus(*elevator);
           break;
 
-        case STOPPED:
+        case EMERGENCY_STOP:
           timer_started = 0;
           elev_set_door_open_lamp(0);
           elevator->state = IDLE;

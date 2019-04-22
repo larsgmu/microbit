@@ -14,7 +14,7 @@ void logic_updateLights(fsm_vars_t elevator){
 int logic_checkStopBtn(fsm_vars_t* elevator){
     if(elev_get_stop_signal()){
       printf("\n##############################\n#    STOP BUTTON PRESSED!    #\n##############################\n\n");
-      elevator->state = STOPPED;
+      elevator->state = EMERGENCY_STOP;
       return 1;
     }
     return 0;

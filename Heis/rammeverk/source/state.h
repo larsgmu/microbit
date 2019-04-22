@@ -15,7 +15,7 @@ typedef enum tag_fsm_state {
     IDLE,
     MOVING,
     DOOR_OPEN,
-    STOPPED,
+    EMERGENCY_STOP,
     INIT
 } fsm_state_t;
 
