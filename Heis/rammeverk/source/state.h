@@ -28,6 +28,7 @@ typedef struct tag_fsm_vars_t{
 fsm_state_t state;
 int currentFloor;
 elev_motor_direction_t lastDir;
+elev_motor_direction_t currDir;
 int queue[N_FLOORS][N_BUTTONS];
 }fsm_vars_t;
 

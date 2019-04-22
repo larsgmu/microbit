@@ -25,7 +25,7 @@ int logic_shouldIStop(fsm_vars_t* elevator){
     if(elev_get_stop_signal()){
       return 1;
     }
-    switch (elevator->lastDir) {
+    switch (elevator->currDir) {
         case DIRN_UP:
             return
                 //If up button or cab button on current floor, or if there are no orders above - Stop.

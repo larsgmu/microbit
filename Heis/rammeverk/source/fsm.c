@@ -17,6 +17,7 @@ void fsm_startElev(fsm_vars_t* elevator){
   elevator->currentFloor = elev_get_floor_sensor_signal();
   elevator->state = IDLE;
   elevator->lastDir =  DIRN_STOP;
+  elevator->currDir =  DIRN_STOP;
   elev_set_motor_direction(DIRN_STOP);
   logic_updateLights(*elevator);
   printf("\nElevator initialized! \n");
